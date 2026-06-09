@@ -15,11 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Configurar listeners de eventos
 function setupEventListeners() {
-    document.getElementById('formTarefa').addEventListener('submit', adicionarTarefa);
-    document.getElementById('searchInput').addEventListener('keyup', () => {
-        termoBusca = document.getElementById('searchInput').value.toLowerCase();
-        renderizarTarefas();
-    });
+    const form = document.getElementById('formTarefa');
+    const searchInput = document.getElementById('searchInput');
+    const formEditar = document.getElementById('formEditar');
+
+    if (form) {
+        form.addEventListener('submit', adicionarTarefa);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keyup', () => {
+            termoBusca = searchInput.value.toLowerCase();
+            renderizarTarefas();
+        });
+    }
+
+    if (formEditar) {
+        formEditar.addEventListener('submit', salvarEdicao);
+    }
 
     // Fechar modal ao clicar fora
     window.addEventListener('click', (event) => {
@@ -171,7 +184,10 @@ function filtrarTarefas(filtro) {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    document.querySelector(`[data-filter="${filtro}"]`).classList.add('active');
+    const btnAtivo = document.querySelector(`[data-filter="${filtro}"]`);
+    if (btnAtivo) {
+        btnAtivo.classList.add('active');
+    }
 
     renderizarTarefas();
 }

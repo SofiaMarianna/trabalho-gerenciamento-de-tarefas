@@ -14,29 +14,13 @@
             <p>Organize suas tarefas de forma simples e eficiente</p>
         </header>
 
-        <!-- Seção de Filtros e Pesquisa -->
-        <section class="search-filter-section">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 Pesquisar tarefas..." class="search-input">
-                <button onclick="pesquisarTarefas()" class="btn-search">Buscar</button>
-            </div>
-            
-            <div class="filter-buttons">
-                <button onclick="filtrarTarefas('todas')" class="filter-btn active" data-filter="todas">Todas</button>
-                <button onclick="filtrarTarefas('ativas')" class="filter-btn" data-filter="ativas">Ativas</button>
-                <button onclick="filtrarTarefas('finalizadas')" class="filter-btn" data-filter="finalizadas">Finalizadas</button>
-                <button onclick="filtrarTarefas('canceladas')" class="filter-btn" data-filter="canceladas">Canceladas</button>
-                <button onclick="filtrarTarefas('prioridade')" class="filter-btn" data-filter="prioridade">Prioritárias</button>
-            </div>
-        </section>
-
         <!-- Seção de Cadastro de Nova Tarefa -->
         <section class="add-task-section">
             <h2>Nova Tarefa</h2>
             <form id="formTarefa" onsubmit="adicionarTarefa(event)" class="task-form">
                 <div class="form-group">
                     <label for="tituloTarefa">Título *</label>
-                    <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa" required>
+                    <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa">
                 </div>
 
                 <div class="form-row">
@@ -67,7 +51,7 @@
                     <div class="form-group checkbox-group">
                         <label for="prioridadeTarefa">
                             <input type="checkbox" id="prioridadeTarefa">
-                            Marcar como Prioridade (RF-02)
+                            Marcar como Prioridade
                         </label>
                     </div>
                 </div>
@@ -84,6 +68,22 @@
             </div>
         </section>
 
+        <!-- Seção de Filtros e Pesquisa -->
+        <section class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Pesquisar tarefas..." class="search-input">
+                <button onclick="pesquisarTarefas()" class="btn-search">Buscar</button>
+            </div>
+            
+            <div class="filter-buttons">
+                <button onclick="filtrarTarefas('todas')" class="filter-btn active" data-filter="todas">Todas</button>
+                <button onclick="filtrarTarefas('ativas')" class="filter-btn" data-filter="ativas">Ativas</button>
+                <button onclick="filtrarTarefas('finalizadas')" class="filter-btn" data-filter="finalizadas">Finalizadas</button>
+                <button onclick="filtrarTarefas('canceladas')" class="filter-btn" data-filter="canceladas">Canceladas</button>
+                <button onclick="filtrarTarefas('prioridade')" class="filter-btn" data-filter="prioridade">Prioritárias</button>
+            </div>
+        </section>
+
         <!-- Modal de Edição -->
         <div id="modalEditar" class="modal">
             <div class="modal-content">
@@ -94,7 +94,7 @@
                     
                     <div class="form-group">
                         <label for="editarTitulo">Título</label>
-                        <input type="text" id="editarTitulo" required>
+                        <input type="text" id="editarTitulo">
                     </div>
 
                     <div class="form-group">

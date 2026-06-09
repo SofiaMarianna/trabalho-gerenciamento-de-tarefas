@@ -34,7 +34,7 @@ function setupEventListeners() {
 function adicionarTarefa(event) {
     event.preventDefault();
 
-    const titulo = document.getElementById('titloTarefa').value.trim();
+    const titulo = document.getElementById('tituloTarefa').value.trim();
     const descricao = document.getElementById('descricaoTarefa').value.trim();
     const data = document.getElementById('dataTarefa').value;
     const categoria = document.getElementById('categoriaTarefa').value;
@@ -58,7 +58,14 @@ function adicionarTarefa(event) {
 
     tarefas.push(novaTarefa);
     salvarTarefas();
-    document.getElementById('formTarefa').reset();
+    
+    // Limpar campos individualmente em vez de usar reset()
+    document.getElementById('tituloTarefa').value = '';
+    document.getElementById('descricaoTarefa').value = '';
+    document.getElementById('dataTarefa').value = '';
+    document.getElementById('categoriaTarefa').value = '';
+    document.getElementById('prioridadeTarefa').checked = false;
+    
     renderizarTarefas();
     alert('Tarefa adicionada com sucesso!');
 }
@@ -129,8 +136,15 @@ function salvarEdicao(event) {
     const id = parseInt(document.getElementById('editarId').value);
     const tarefa = tarefas.find(t => t.id === id);
 
+    const titulo = document.getElementById('editarTitulo').value.trim();
+
+    if (!titulo) {
+        alert('Por favor, digite um título para a tarefa!');
+        return;
+    }
+
     if (tarefa) {
-        tarefa.titulo = document.getElementById('editarTitulo').value.trim();
+        tarefa.titulo = titulo;
         tarefa.descricao = document.getElementById('editarDescricao').value.trim();
         tarefa.data = document.getElementById('editarData').value;
         tarefa.categoria = document.getElementById('editarCategoria').value;

@@ -14,22 +14,6 @@
             <p>Organize suas tarefas de forma simples e eficiente</p>
         </header>
 
-        <!-- Seção de Filtros e Pesquisa -->
-        <section class="search-filter-section">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 Pesquisar tarefas..." class="search-input">
-                <button onclick="pesquisarTarefas()" class="btn-search">Buscar</button>
-            </div>
-            
-            <div class="filter-buttons">
-                <button onclick="filtrarTarefas('todas')" class="filter-btn active" data-filter="todas">Todas</button>
-                <button onclick="filtrarTarefas('ativas')" class="filter-btn" data-filter="ativas">Ativas</button>
-                <button onclick="filtrarTarefas('finalizadas')" class="filter-btn" data-filter="finalizadas">Finalizadas</button>
-                <button onclick="filtrarTarefas('canceladas')" class="filter-btn" data-filter="canceladas">Canceladas</button>
-                <button onclick="filtrarTarefas('prioridade')" class="filter-btn" data-filter="prioridade">Prioritárias</button>
-            </div>
-        </section>
-
         <!-- Seção de Cadastro de Nova Tarefa -->
         <section class="add-task-section">
             <h2>Nova Tarefa</h2>
@@ -81,6 +65,22 @@
             <h2>Tarefas</h2>
             <div id="listagemTarefas" class="tasks-list">
                 <p class="empty-message">Nenhuma tarefa adicionada ainda. Comece criando uma!</p>
+            </div>
+        </section>
+
+        <!-- Seção de Filtros e Pesquisa -->
+        <section class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Pesquisar tarefas..." class="search-input">
+                <button onclick="pesquisarTarefas()" class="btn-search">Buscar</button>
+            </div>
+            
+            <div class="filter-buttons">
+                <button onclick="filtrarTarefas('todas')" class="filter-btn active" data-filter="todas">Todas</button>
+                <button onclick="filtrarTarefas('ativas')" class="filter-btn" data-filter="ativas">Ativas</button>
+                <button onclick="filtrarTarefas('finalizadas')" class="filter-btn" data-filter="finalizadas">Finalizadas</button>
+                <button onclick="filtrarTarefas('canceladas')" class="filter-btn" data-filter="canceladas">Canceladas</button>
+                <button onclick="filtrarTarefas('prioridade')" class="filter-btn" data-filter="prioridade">Prioritárias</button>
             </div>
         </section>
 

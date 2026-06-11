@@ -1,0 +1,22 @@
+{
+  "name": "gerenciador-tarefas",
+  "version": "1.0.0",
+  "description": "Aplicação de gerenciamento de tarefas com testes automatizados",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "tarefas",
+    "gerenciador",
+    "todo"
+  ],
+  "author": "Sofia Marianna",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

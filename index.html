@@ -1,141 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerenciador de Tarefas</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <!-- Cabeçalho -->
-        <header class="header">
-            <h1>📋 Gerenciador de Tarefas</h1>
-            <p>Organize suas tarefas de forma simples e eficiente</p>
-        </header>
+      <!-- Cabeçalho -->
+      <header class="header">
+        <h1>Gerenciador de Tarefas</h1>
+        <p>Organize suas tarefas de forma simples e eficiente</p>
+      </header>
 
-        <!-- Seção de Cadastro de Nova Tarefa -->
-        <section class="add-task-section">
-            <h2>Nova Tarefa</h2>
-            <form id="formTarefa" class="task-form">
-                <div class="form-group">
-                    <label for="tituloTarefa">Título *</label>
-                    <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa">
-                </div>
+      <!-- Seção de Cadastro de Nova Tarefa -->
+      <section class="add-task-section">
+        <h2>Nova Tarefa</h2>
+        <form id="formTarefa" class="task-form">
+          <div class="form-group">
+            <label for="tituloTarefa">Título *</label>
+            <input
+              type="text"
+              id="tituloTarefa"
+              placeholder="Digite o título da tarefa"
+            />
+          </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="descricaoTarefa">Descrição</label>
-                        <textarea id="descricaoTarefa" placeholder="Descreva a tarefa..." rows="3"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dataTarefa">Data de Vencimento</label>
-                        <input type="date" id="dataTarefa">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="categoriaTarefa">Categoria</label>
-                        <select id="categoriaTarefa">
-                            <option value="">Selecione uma categoria</option>
-                            <option value="Trabalho">Trabalho</option>
-                            <option value="Pessoal">Pessoal</option>
-                            <option value="Saúde">Saúde</option>
-                            <option value="Estudo">Estudo</option>
-                            <option value="Outro">Outro</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label for="prioridadeTarefa">
-                            <input type="checkbox" id="prioridadeTarefa">
-                            Marcar como Prioridade
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-add">+ Adicionar Tarefa</button>
-            </form>
-        </section>
-
-        <!-- Seção contendo Filtros, Pesquisa e Listagem de Tarefas -->
-        <section class="tasks-section">
-            <!-- Seção de Filtros e Pesquisa -->
-            <div class="search-filter-section">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Pesquisar tarefas..." class="search-input">
-                    <button onclick="pesquisarTarefas()" class="btn-search">Buscar</button>
-                </div>
-                
-                <div class="filter-buttons">
-                    <button onclick="filtrarTarefas('todas')" class="filter-btn active" data-filter="todas">Todas</button>
-                    <button onclick="filtrarTarefas('ativas')" class="filter-btn" data-filter="ativas">Ativas</button>
-                    <button onclick="filtrarTarefas('finalizadas')" class="filter-btn" data-filter="finalizadas">Finalizadas</button>
-                    <button onclick="filtrarTarefas('canceladas')" class="filter-btn" data-filter="canceladas">Canceladas</button>
-                    <button onclick="filtrarTarefas('prioridade')" class="filter-btn" data-filter="prioridade">Prioritárias</button>
-                </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="descricaoTarefa">Descrição</label>
+              <textarea
+                id="descricaoTarefa"
+                placeholder="Descreva a tarefa..."
+                rows="3"
+              ></textarea>
             </div>
 
-            <!-- Listagem de Tarefas -->
-            <h2>Tarefas</h2>
-            <div id="listagemTarefas" class="tasks-list">
-                <p class="empty-message">Nenhuma tarefa adicionada ainda. Comece criando uma!</p>
+            <div class="form-group">
+              <label for="dataTarefa">Data de Vencimento</label>
+              <input type="date" id="dataTarefa" />
             </div>
-        </section>
+          </div>
 
-        <!-- Modal de Edição -->
-        <div id="modalEditar" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="fecharModal()">&times;</span>
-                <h2>Editar Tarefa</h2>
-                <form id="formEditar" onsubmit="salvarEdicao(event)">
-                    <input type="hidden" id="editarId">
-                    
-                    <div class="form-group">
-                        <label for="editarTitulo">Título</label>
-                        <input type="text" id="editarTitulo">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editarDescricao">Descrição</label>
-                        <textarea id="editarDescricao" rows="3"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editarData">Data de Vencimento</label>
-                        <input type="date" id="editarData">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editarCategoria">Categoria</label>
-                        <select id="editarCategoria">
-                            <option value="">Selecione uma categoria</option>
-                            <option value="Trabalho">Trabalho</option>
-                            <option value="Pessoal">Pessoal</option>
-                            <option value="Saúde">Saúde</option>
-                            <option value="Estudo">Estudo</option>
-                            <option value="Outro">Outro</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label for="editarPrioridade">
-                            <input type="checkbox" id="editarPrioridade">
-                            Marcar como Prioridade
-                        </label>
-                    </div>
-
-                    <div class="modal-buttons">
-                        <button type="submit" class="btn-save">Salvar Alterações</button>
-                        <button type="button" class="btn-cancel" onclick="fecharModal()">Cancelar</button>
-                    </div>
-                </form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="categoriaTarefa">Categoria</label>
+              <select id="categoriaTarefa">
+                <option value="">Selecione uma categoria</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Pessoal">Pessoal</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Estudo">Estudo</option>
+                <option value="Outro">Outro</option>
+              </select>
             </div>
+
+            <div class="form-group checkbox-group">
+              <label for="prioridadeTarefa">
+                <input type="checkbox" id="prioridadeTarefa" />
+                Marcar como Prioridade
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-add">+ Adicionar Tarefa</button>
+        </form>
+      </section>
+
+      <!-- Seção contendo Filtros, Pesquisa e Listagem de Tarefas -->
+      <section class="tasks-section">
+        <!-- Seção de Filtros e Pesquisa -->
+        <div class="search-filter-section">
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="🔍 Pesquisar tarefas..."
+              class="search-input"
+            />
+            <button onclick="pesquisarTarefas()" class="btn-search">
+              Buscar
+            </button>
+          </div>
+
+          <div class="filter-buttons">
+            <button
+              onclick="filtrarTarefas('todas')"
+              class="filter-btn active"
+              data-filter="todas"
+            >
+              Todas
+            </button>
+            <button
+              onclick="filtrarTarefas('ativas')"
+              class="filter-btn"
+              data-filter="ativas"
+            >
+              Ativas
+            </button>
+            <button
+              onclick="filtrarTarefas('finalizadas')"
+              class="filter-btn"
+              data-filter="finalizadas"
+            >
+              Finalizadas
+            </button>
+            <button
+              onclick="filtrarTarefas('canceladas')"
+              class="filter-btn"
+              data-filter="canceladas"
+            >
+              Canceladas
+            </button>
+            <button
+              onclick="filtrarTarefas('prioridade')"
+              class="filter-btn"
+              data-filter="prioridade"
+            >
+              Prioritárias
+            </button>
+          </div>
         </div>
+
+        <!-- Listagem de Tarefas -->
+        <h2>Tarefas</h2>
+        <div id="listagemTarefas" class="tasks-list">
+          <p class="empty-message">
+            Nenhuma tarefa adicionada ainda. Comece criando uma!
+          </p>
+        </div>
+      </section>
+
+      <!-- Modal de Edição -->
+      <div id="modalEditar" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="fecharModal()">&times;</span>
+          <h2>Editar Tarefa</h2>
+          <form id="formEditar" onsubmit="salvarEdicao(event)">
+            <input type="hidden" id="editarId" />
+
+            <div class="form-group">
+              <label for="editarTitulo">Título</label>
+              <input type="text" id="editarTitulo" />
+            </div>
+
+            <div class="form-group">
+              <label for="editarDescricao">Descrição</label>
+              <textarea id="editarDescricao" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="editarData">Data de Vencimento</label>
+              <input type="date" id="editarData" />
+            </div>
+
+            <div class="form-group">
+              <label for="editarCategoria">Categoria</label>
+              <select id="editarCategoria">
+                <option value="">Selecione uma categoria</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Pessoal">Pessoal</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Estudo">Estudo</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label for="editarPrioridade">
+                <input type="checkbox" id="editarPrioridade" />
+                Marcar como Prioridade
+              </label>
+            </div>
+
+            <div class="modal-buttons">
+              <button type="submit" class="btn-save">Salvar Alterações</button>
+              <button type="button" class="btn-cancel" onclick="fecharModal()">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

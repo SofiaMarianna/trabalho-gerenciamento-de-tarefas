@@ -5,6 +5,9 @@
   "main": "script.js",
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js",
+    "test:unit": "node ./node_modules/jest/bin/jest.js script.unit.test.js",
+    "test:integration": "node ./node_modules/jest/bin/jest.js script.integration.test.js",
+    "test:system": "node ./node_modules/jest/bin/jest.js script.system.test.js",
     "test:watch": "node ./node_modules/jest/bin/jest.js --watch",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage"
   },
